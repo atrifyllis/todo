@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_logging/redux_logging.dart';
 import 'package:todo/routes.dart';
 
 import 'AppState.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.mock(),
+      middleware: [new LoggingMiddleware.printer()]
   );
 
   @override
