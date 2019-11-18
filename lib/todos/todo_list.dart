@@ -4,8 +4,9 @@ import 'model/todo.dart';
 
 class TodoList extends StatelessWidget {
   final List<Todo> todos;
+  final Function onValueChanged;
 
-  const TodoList({Key key, this.todos}) : super(key: key);
+  const TodoList({Key key, this.todos, this.onValueChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,13 @@ class TodoList extends StatelessWidget {
     );
   }
 
-  Row _buildTodoRow(Todo todo) {
-    return Row(
-      children: <Widget>[Text(todo.name)],
-    );
+  CheckboxListTile _buildTodoRow(Todo todo) {
+    return CheckboxListTile(
+        title: Text(todo.name),
+        value: todo.done,
+        onChanged: (complete) {
+          onValueChanged(todo, complete);
+        });
   }
 
   _buildTodoRows() {

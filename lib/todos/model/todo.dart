@@ -1,13 +1,12 @@
 class Todo {
-  String name;
-  bool done;
+  final String id;
+  final String name;
+  final bool done;
 
-  Todo(this.name, {this.done = false});
+  Todo(this.id, this.name, {this.done = false});
 
   @override
   String toString() {
-    return 'Todo{name: $name, done: $done}';
+    return 'Todo{id: $id, name: $name, done: $done}';
   }
-
-
 }

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             ),
             routes: {
               Routes.home: (context) {
-                return HomePage(title: "Advancedd Todoz");
+                return HomePage(title: "Advanced Todoz");
               }
             }));
   }

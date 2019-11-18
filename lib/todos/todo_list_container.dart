@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 import '../AppState.dart';
+import 'actions.dart';
 import 'model/todo.dart';
 import 'selectors.dart';
 import 'todo_list.dart';
@@ -15,6 +16,7 @@ class TodoListContainer extends StatelessWidget {
       builder: (context, vm) {
         return TodoList(
           todos: vm.todos,
+          onValueChanged: vm.onValueChanged,
         );
       },
     );
@@ -23,12 +25,18 @@ class TodoListContainer extends StatelessWidget {
 
 class _ViewModel {
   final List<Todo> todos;
+  final Function(Todo, bool) onValueChanged;
 
-  _ViewModel({
-    @required this.todos,
-  });
+  _ViewModel({@required this.todos, @required this.onValueChanged});
 
   static _ViewModel fromStore(Store<AppState> store) {
-    return _ViewModel(todos: todosSelector(store.state));
+    return _ViewModel(
+      todos: todosSelector(store.state),
+      onValueChanged: (todo, complete) {
+        store.dispatch(
+          TodoUpdatedAction(todo.id, complete),
+        );
+      },
+    );
   }
 }

@@ -12,3 +12,15 @@ class TodosLoadedAction {
 }
 
 class TodosNotLoadedAction {}
+
+class TodoUpdatedAction {
+  final String id;
+  final bool done;
+
+  TodoUpdatedAction(this.id, this.done);
+
+  @override
+  String toString() {
+    return 'UpdateTodoAction{id: $id, done: $done}';
+  }
+}
