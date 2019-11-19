@@ -11,6 +11,7 @@ final todosReducer = combineReducers<List<Todo>>([
   TypedReducer<List<Todo>, TodosLoadedAction>(_setLoadedTodos),
   TypedReducer<List<Todo>, TodosNotLoadedAction>(_setNoTodos),
   TypedReducer<List<Todo>, TodoUpdatedAction>(_setUpdatedTodo),
+  TypedReducer<List<Todo>, TodoOrderChangedAction>(_setOrderChangedTodo),
 ]);
 
 List<Todo> _setLoadedTodos(List<Todo> todos, TodosLoadedAction action) {
@@ -27,4 +28,18 @@ List<Todo> _setUpdatedTodo(List<Todo> todos, TodoUpdatedAction action) {
           ? Todo(todo.id, todo.name, done: action.done)
           : todo)
       .toList();
+}
+
+List<Todo> _setOrderChangedTodo(
+    List<Todo> todos, TodoOrderChangedAction action) {
+  List<Todo> oldTodos = List.from(todos);
+  var oldIndex = action.oldIndex;
+  var newIndex = action.newIndex;
+  if (oldIndex < newIndex) {
+    // removing the item at oldIndex will shorten the list by 1.
+    newIndex -= 1;
+  }
+  final Todo movedTodo = oldTodos.removeAt(oldIndex);
+  oldTodos.insert(newIndex, movedTodo);
+  return oldTodos;
 }

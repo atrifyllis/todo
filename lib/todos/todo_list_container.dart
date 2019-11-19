@@ -17,6 +17,7 @@ class TodoListContainer extends StatelessWidget {
         return TodoList(
           todos: vm.todos,
           onValueChanged: vm.onValueChanged,
+          onOrderChanged: vm.onOrderChanged,
         );
       },
     );
@@ -26,8 +27,9 @@ class TodoListContainer extends StatelessWidget {
 class _ViewModel {
   final List<Todo> todos;
   final Function(Todo, bool) onValueChanged;
+  final Function(Todo, int, int) onOrderChanged;
 
-  _ViewModel({@required this.todos, @required this.onValueChanged});
+  _ViewModel({@required this.todos, @required this.onValueChanged, this.onOrderChanged});
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
@@ -37,6 +39,9 @@ class _ViewModel {
           TodoUpdatedAction(todo.id, complete),
         );
       },
+      onOrderChanged: (todo, oldIndex, newIndex) {
+        store.dispatch(TodoOrderChangedAction(todo.id, oldIndex, newIndex));
+      }
     );
   }
 }

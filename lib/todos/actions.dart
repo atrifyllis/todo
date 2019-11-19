@@ -24,3 +24,16 @@ class TodoUpdatedAction {
     return 'UpdateTodoAction{id: $id, done: $done}';
   }
 }
+
+class TodoOrderChangedAction {
+  final String id;
+  final int oldIndex;
+  final int newIndex;
+
+  TodoOrderChangedAction(this.id, this.oldIndex, this.newIndex);
+
+  @override
+  String toString() {
+    return 'TodoOrderChangedAction{id: $id, oldIndex: $oldIndex, newIndex: $newIndex}';
+  }
+}
