@@ -3,6 +3,7 @@
 // in the LICENSE file.
 
 import 'package:redux/redux.dart';
+import 'package:uuid/uuid.dart';
 
 import 'actions.dart';
 import 'model/todo.dart';
@@ -12,6 +13,7 @@ final todosReducer = combineReducers<List<Todo>>([
   TypedReducer<List<Todo>, TodosNotLoadedAction>(_setNoTodos),
   TypedReducer<List<Todo>, TodoUpdatedAction>(_setUpdatedTodo),
   TypedReducer<List<Todo>, TodoOrderChangedAction>(_setOrderChangedTodo),
+  TypedReducer<List<Todo>, ItemAddedAction>(_setItemAdded),
 ]);
 
 List<Todo> _setLoadedTodos(List<Todo> todos, TodosLoadedAction action) {
@@ -42,4 +44,8 @@ List<Todo> _setOrderChangedTodo(
   final Todo movedTodo = oldTodos.removeAt(oldIndex);
   oldTodos.insert(newIndex, movedTodo);
   return oldTodos;
+}
+
+List<Todo> _setItemAdded(List<Todo> todos, ItemAddedAction action) {
+  return List.from(todos)..add(Todo(Uuid().v4(), action.itemText));
 }

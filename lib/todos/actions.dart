@@ -37,3 +37,14 @@ class TodoOrderChangedAction {
     return 'TodoOrderChangedAction{id: $id, oldIndex: $oldIndex, newIndex: $newIndex}';
   }
 }
+
+class ItemAddedAction {
+  final String itemText;
+
+  ItemAddedAction(this.itemText);
+
+  @override
+  String toString() {
+    return 'ItemAddedAction{itemText: $itemText}';
+  }
+}

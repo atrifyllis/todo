@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: null,
+//        tooltip: 'Increment',
+//        child: Icon(Icons.add),
+//      ),
     );
   }
 }
