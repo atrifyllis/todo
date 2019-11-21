@@ -17,10 +17,13 @@ class _AddItemTextFieldState extends State<AddItemTextField> {
     return Row(children: <Widget>[
       Expanded(
         child: TextField(
-          controller: _textEditingController,
-          decoration: InputDecoration(labelText: "Add Item"),
-          onSubmitted: widget.onItemAdded,
-          onEditingComplete: _textEditingController.clear,
+            controller: _textEditingController,
+            decoration: InputDecoration(labelText: "Add Item"),
+            onEditingComplete: () {
+              widget.onItemAdded(_textEditingController.text);
+              _textEditingController.clear();
+              FocusScope.of(context).unfocus();
+            }
         ),
       )
     ]);
