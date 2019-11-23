@@ -23,6 +23,8 @@ dependencies:
   flutter_redux: ^0.5.3
   redux_logging: ^0.3.0
   uuid: ^2.0.4
+  redux_remote_devtools: ^0.0.7
+  json_annotation: ^3.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -31,6 +33,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^1.0.0
+  json_serializable: ^3.2.3
+
 
 
 # For information on the generic Dart part of this file, see the

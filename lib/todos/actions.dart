@@ -1,5 +1,8 @@
-import 'model/todo.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import 'model/todo.dart';
+part "actions.g.dart";
+@JsonSerializable()
 class TodosLoadedAction {
   final List<Todo> todos;
 
@@ -11,8 +14,10 @@ class TodosLoadedAction {
   }
 }
 
+@JsonSerializable()
 class TodosNotLoadedAction {}
 
+@JsonSerializable()
 class TodoUpdatedAction {
   final String id;
   final bool done;
@@ -25,6 +30,7 @@ class TodoUpdatedAction {
   }
 }
 
+@JsonSerializable()
 class TodoOrderChangedAction {
   final String id;
   final int oldIndex;
@@ -38,6 +44,7 @@ class TodoOrderChangedAction {
   }
 }
 
+@JsonSerializable()
 class ItemAddedAction {
   final String itemText;
 
