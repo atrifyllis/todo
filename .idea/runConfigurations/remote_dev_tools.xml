@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="remote dev tools" type="NodeJSConfigurationType" application-parameters="--port 8000 " path-to-js-file="$USER_HOME$/AppData/Roaming/nvm/v10.16.3/node_modules/remotedev-server/bin/remotedev.js" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>
