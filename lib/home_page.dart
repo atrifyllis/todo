@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'todos/todo_list_container.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+  HomePage({Key key, this.title, this.devDrawerBuilder}) : super(key: key);
 
   final String title;
+  final WidgetBuilder devDrawerBuilder;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -15,6 +16,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: widget.devDrawerBuilder != null
+          ? widget.devDrawerBuilder(context)
+          : null,
       appBar: AppBar(
         title: Text(widget.title),
       ),
