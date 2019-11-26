@@ -6,7 +6,7 @@ import 'package:redux/redux.dart';
 import 'package:uuid/uuid.dart';
 
 import 'actions.dart';
-import 'model/todo.dart';
+import 'todo.dart';
 
 final todosReducer = combineReducers<List<Todo>>([
   TypedReducer<List<Todo>, TodosLoadedAction>(_setLoadedTodos),

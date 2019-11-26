@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'model/todo.dart';
-part "actions.g.dart";
+import 'todo.dart';
+part 'actions.g.dart';
 @JsonSerializable()
 class TodosLoadedAction {
   final List<Todo> todos;

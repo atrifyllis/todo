@@ -5,7 +5,7 @@
 
 // We create the State reducer by combining many smaller reducers into one!
 import 'AppState.dart';
-import 'todos/todos_reducer.dart';
+import 'todos/model/todos_reducer.dart';
 
 AppState appReducer(AppState state, action) {
   return AppState(

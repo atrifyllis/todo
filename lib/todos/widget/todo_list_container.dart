@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import '../model/selectors.dart';
 
-import '../AppState.dart';
-import 'actions.dart';
-import 'model/todo.dart';
-import 'selectors.dart';
+import '../../AppState.dart';
+import '../model/actions.dart';
+import '../model/todo.dart';
 import 'todo_list.dart';
 
 class TodoListContainer extends StatelessWidget {

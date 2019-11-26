@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo/todos/AddItemTextField.dart';
+import 'package:todo/todos/widget/AddItemTextField.dart';
 
-import 'model/todo.dart';
+import '../model/todo.dart';
 
 class TodoList extends StatelessWidget {
   final List<Todo> todos;
