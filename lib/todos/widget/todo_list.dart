@@ -37,6 +37,7 @@ class TodoList extends StatelessWidget {
     return Row(
       key: UniqueKey(),
       children: <Widget>[
+        Icon(Icons.drag_handle,color: Theme.of(context).primaryColor,),
         Checkbox(value: todo.done, onChanged: (complete) {
           onValueChanged(todo, complete);
         },),
