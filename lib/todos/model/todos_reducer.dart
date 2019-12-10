@@ -14,6 +14,7 @@ final todosReducer = combineReducers<List<Todo>>([
   TypedReducer<List<Todo>, TodoUpdatedAction>(_setUpdatedTodo),
   TypedReducer<List<Todo>, TodoOrderChangedAction>(_setOrderChangedTodo),
   TypedReducer<List<Todo>, ItemAddedAction>(_setItemAdded),
+  TypedReducer<List<Todo>, ItemDeletedAction>(_setItemDeleted),
 ]);
 
 List<Todo> _setLoadedTodos(List<Todo> todos, TodosLoadedAction action) {
@@ -48,4 +49,8 @@ List<Todo> _setOrderChangedTodo(
 
 List<Todo> _setItemAdded(List<Todo> todos, ItemAddedAction action) {
   return List.from(todos)..add(Todo(Uuid().v4(), action.itemText));
+}
+
+List<Todo> _setItemDeleted(List<Todo> todos, ItemDeletedAction action) {
+  return todos.where((todo) => todo.id != action.todoId).toList();
 }

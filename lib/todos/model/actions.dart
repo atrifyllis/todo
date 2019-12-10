@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'todo.dart';
+
 part 'actions.g.dart';
+
 @JsonSerializable()
 class TodosLoadedAction {
   final List<Todo> todos;
@@ -54,4 +55,17 @@ class ItemAddedAction {
   String toString() {
     return 'ItemAddedAction{itemText: $itemText}';
   }
+}
+
+class ItemDeletedAction {
+  final String todoId;
+
+  ItemDeletedAction(this.todoId);
+
+  @override
+  String toString() {
+    return 'ItemDeletedAction{todoId: $todoId}';
+  }
+
+
 }

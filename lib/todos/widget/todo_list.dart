@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/todos/widget/AddItemTextField.dart';
 
@@ -8,14 +9,11 @@ class TodoList extends StatelessWidget {
   final Function onValueChanged;
   final Function onOrderChanged;
   final Function onItemAdded;
+  final Function onItemDeleted;
 
 
   const TodoList(
-      {Key key,
-      this.todos,
-      this.onValueChanged,
-      this.onOrderChanged,
-      this.onItemAdded})
+      {Key key, this.todos, this.onValueChanged, this.onOrderChanged, this.onItemAdded, this.onItemDeleted})
       : super(key: key);
 
   @override
@@ -24,7 +22,7 @@ class TodoList extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: ReorderableListView(
-            children: _buildTodoRows(),
+            children: _buildTodoRows(context),
             onReorder: (int oldIndex, int newIndex) {
               onOrderChanged(todos[oldIndex], oldIndex, newIndex);
             },
@@ -35,17 +33,28 @@ class TodoList extends StatelessWidget {
     );
   }
 
-  CheckboxListTile _buildTodoRow(Todo todo) {
-    return CheckboxListTile(
-        key: UniqueKey(),
-        title: Text(todo.name),
-        value: todo.done,
-        onChanged: (complete) {
+  Row _buildTodoRow(Todo todo, BuildContext context) {
+    return Row(
+      key: UniqueKey(),
+      children: <Widget>[
+        Checkbox(value: todo.done, onChanged: (complete) {
           onValueChanged(todo, complete);
-        });
+        },),
+        Text(todo.name),
+        Spacer(),
+        IconButton(
+            color: Theme.of(context).errorColor,
+            highlightColor: Theme.of(context).accentColor,
+            splashColor: Theme.of(context).accentColor,
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              onItemDeleted(todo.id);
+            }),
+      ],
+    );
   }
 
-  List<CheckboxListTile> _buildTodoRows() {
-    return todos.map((todo) => _buildTodoRow(todo)).toList();
+  List<Row> _buildTodoRows(BuildContext context) {
+    return todos.map((todo) => _buildTodoRow(todo, context)).toList();
   }
 }

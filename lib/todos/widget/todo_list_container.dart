@@ -19,6 +19,7 @@ class TodoListContainer extends StatelessWidget {
           onValueChanged: vm.onValueChanged,
           onOrderChanged: vm.onOrderChanged,
           onItemAdded: vm.onItemAdded,
+          onItemDeleted: vm.onItemDeleted,
         );
       },
     );
@@ -30,12 +31,10 @@ class _ViewModel {
   final Function(Todo, bool) onValueChanged;
   final Function(Todo, int, int) onOrderChanged;
   final Function(String) onItemAdded;
+  final Function(String) onItemDeleted;
 
   _ViewModel(
-      {@required this.todos,
-      @required this.onValueChanged,
-      this.onOrderChanged,
-      this.onItemAdded});
+      {@required this.todos, @required this.onValueChanged, this.onOrderChanged, this.onItemAdded, this.onItemDeleted});
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
@@ -50,6 +49,9 @@ class _ViewModel {
         },
         onItemAdded: (itemText) {
           store.dispatch(ItemAddedAction(itemText));
+        },
+        onItemDeleted: (todId) {
+          store.dispatch(ItemDeletedAction(todId));
         });
   }
 }
