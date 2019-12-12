@@ -20,6 +20,7 @@ class TodoListContainer extends StatelessWidget {
           onOrderChanged: vm.onOrderChanged,
           onItemAdded: vm.onItemAdded,
           onItemDeleted: vm.onItemDeleted,
+          onItemEdited: vm.onItemEdited,
         );
       },
     );
@@ -32,26 +33,36 @@ class _ViewModel {
   final Function(Todo, int, int) onOrderChanged;
   final Function(String) onItemAdded;
   final Function(String) onItemDeleted;
+  final Function(Todo, String) onItemEdited;
 
   _ViewModel(
-      {@required this.todos, @required this.onValueChanged, this.onOrderChanged, this.onItemAdded, this.onItemDeleted});
+      {@required this.todos,
+      @required this.onValueChanged,
+      this.onOrderChanged,
+      this.onItemAdded,
+      this.onItemDeleted,
+      this.onItemEdited});
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
-        todos: todosSelector(store.state),
-        onValueChanged: (todo, complete) {
-          store.dispatch(
-            TodoUpdatedAction(todo.id, complete),
-          );
-        },
-        onOrderChanged: (todo, oldIndex, newIndex) {
-          store.dispatch(TodoOrderChangedAction(todo.id, oldIndex, newIndex));
-        },
-        onItemAdded: (itemText) {
-          store.dispatch(ItemAddedAction(itemText));
-        },
-        onItemDeleted: (todId) {
-          store.dispatch(ItemDeletedAction(todId));
-        });
+      todos: todosSelector(store.state),
+      onValueChanged: (todo, complete) {
+        store.dispatch(
+          TodoUpdatedAction(todo.id, complete, todo.name),
+        );
+      },
+      onOrderChanged: (todo, oldIndex, newIndex) {
+        store.dispatch(TodoOrderChangedAction(todo.id, oldIndex, newIndex));
+      },
+      onItemAdded: (itemText) {
+        store.dispatch(ItemAddedAction(itemText));
+      },
+      onItemDeleted: (todId) {
+        store.dispatch(ItemDeletedAction(todId));
+      },
+      onItemEdited: (todo, name) {
+        store.dispatch(TodoUpdatedAction(todo.id, todo.done, name));
+      },
+    );
   }
 }

@@ -32,6 +32,7 @@ TodoUpdatedAction _$TodoUpdatedActionFromJson(Map<String, dynamic> json) {
   return TodoUpdatedAction(
     json['id'] as String,
     json['done'] as bool,
+    json['name'] as String,
   );
 }
 
@@ -39,6 +40,7 @@ Map<String, dynamic> _$TodoUpdatedActionToJson(TodoUpdatedAction instance) =>
     <String, dynamic>{
       'id': instance.id,
       'done': instance.done,
+      'name': instance.name,
     };
 
 TodoOrderChangedAction _$TodoOrderChangedActionFromJson(

@@ -11,6 +11,7 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
     json['id'] as String,
     json['name'] as String,
     done: json['done'] as bool,
+    editing: json['editing'] as bool,
   );
 }
 
@@ -18,4 +19,5 @@ Map<String, dynamic> _$TodoToJson(Todo instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'done': instance.done,
+      'editing': instance.editing,
     };

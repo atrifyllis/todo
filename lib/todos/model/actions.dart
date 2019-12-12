@@ -22,12 +22,13 @@ class TodosNotLoadedAction {}
 class TodoUpdatedAction {
   final String id;
   final bool done;
+  final String name;
 
-  TodoUpdatedAction(this.id, this.done);
+  TodoUpdatedAction(this.id, this.done, this.name);
 
   @override
   String toString() {
-    return 'UpdateTodoAction{id: $id, done: $done}';
+    return 'TodoUpdatedAction{id: $id, done: $done, name: $name}';
   }
 }
 

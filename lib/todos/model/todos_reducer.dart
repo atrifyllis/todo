@@ -28,7 +28,7 @@ List<Todo> _setNoTodos(List<Todo> todos, TodosNotLoadedAction action) {
 List<Todo> _setUpdatedTodo(List<Todo> todos, TodoUpdatedAction action) {
   return todos
       .map((todo) => todo.id == action.id
-          ? Todo(todo.id, todo.name, done: action.done)
+          ? Todo(todo.id, action.name, done: action.done, editing: false)
           : todo)
       .toList();
 }
